@@ -20,8 +20,8 @@ import {
 @connect(
   appNS => ({ ...appNS }),
   {
-    increase: () => (({ type: 'appNS/add' }))
-    save: () => (({ type: 'appNS/save' }))
+    increase: () => (({ type: 'appNS/add' })),
+    login: () => (({ type: 'appNS/login' }))
   }
 )
 export default class Login extends Component {
@@ -32,7 +32,13 @@ export default class Login extends Component {
 
   goLogin() {
     // this.props.navigation.navigate('Profile');
-    this.props.save()
+    this.props.login()
+//     const navigateAction = NavigationActions.navigate({
+//
+//   routeName: 'Profile',
+// })
+//
+// this.props.navigation.dispatch(navigateAction)
   }
 
   render() {

@@ -15,16 +15,19 @@ const AppNavigator = StackNavigator(
   },
   {
     navigationOptions: {
-      gesturesEnabled: false,
+      gesturesEnabled: true,
     },
   }
 )
-
+@connect(({ router }) => ({ router }))
 export default class Router extends Component {
-
   render() {
-    const navigation = addNavigationHelpers()
-    console.log(AppNavigator.router.getStateForAction({}));
-    return <AppNavigator />
+    const { dispatch, router } = this.props
+    const navigation = addNavigationHelpers({ dispatch, state: router })
+    return <AppNavigator navigation={navigation} />
   }
+}
+
+export function routerReducer(state, action = {}) {
+  return AppNavigator.router.getStateForAction(action, state)
 }
